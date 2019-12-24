@@ -1,26 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import dabOnTheHaters from "./dabbing.jpg";
+
+const centerStyle = {
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: "50%"
+};
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  return <img src={dabOnTheHaters} alt="CHEEEEEEEN" style={centerStyle} />;
+};
 
 export default App;
