@@ -1,5 +1,7 @@
 import React from "react";
-import dabOnTheHaters from "./dabbing.jpg";
+import { Grommet, Box } from "grommet";
+import Navbar from "./scenes/Navbar";
+import BerryDex from "./scenes/BerryDex";
 
 const centerStyle = {
   display: "block",
@@ -8,8 +10,27 @@ const centerStyle = {
   width: "50%"
 };
 
+const theme = {
+  global: {
+    font: {
+      family: "Roboto",
+      size: "18px",
+      height: "20px"
+    }
+  }
+};
+
 const App: React.FC = () => {
-  return <img src={dabOnTheHaters} alt="CHEEEEEEEN" style={centerStyle} />;
+  return (
+    <Grommet theme={theme} full>
+      <Box fill>
+        <Navbar />
+        <Box flex>
+          <BerryDex />
+        </Box>
+      </Box>
+    </Grommet>
+  );
 };
 
 export default App;
