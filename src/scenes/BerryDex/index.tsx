@@ -3,13 +3,15 @@ import { Grid, Box, Image, Text } from "grommet";
 import BerrySidebarItems from "./BerrySidebarItems";
 import { Berry, fetchBerry, fetchBerryList } from "./fetchBerryData";
 import dabOnTheHaters from "../../dabbing.jpg";
+import BerryDetails from "./BerryDetails";
+import NoBerryFallback from "./NoBerryFallback";
 
 const initialResource = fetchBerryList();
 
 const BerryDex: FC = () => {
   const [resource, setResource] = useState(initialResource);
   const [berryId, setBerryId] = useState("");
-  const [berry, setBerry] = useState({} as Berry);
+  const [berry, setBerry] = useState((null as unknown) as Berry);
 
   useEffect(() => {
     if (berryId) {
@@ -47,23 +49,7 @@ const BerryDex: FC = () => {
           />
         </Suspense>
       </Box>
-      <Box
-        gridArea="main"
-        justify="center"
-        align="center"
-        overflow={{
-          vertical: "visible",
-          horizontal: "hidden"
-        }}
-      >
-        <Box height="medium" width="medium">
-          {berry ? (
-            <div />
-          ) : (
-            <Image fit="cover" alt="Dab!" src={dabOnTheHaters} />
-          )}
-        </Box>
-      </Box>
+      {berry ? <BerryDetails berry={berry} /> : <NoBerryFallback />}
     </Grid>
   );
 };
