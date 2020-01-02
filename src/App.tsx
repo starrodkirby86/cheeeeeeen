@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Grommet, Box } from "grommet";
 import Navbar from "./scenes/Navbar";
 import BerryDex from "./scenes/BerryDex";
@@ -20,7 +20,7 @@ const theme = {
   }
 };
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Grommet theme={theme} full>
       <Box fill>

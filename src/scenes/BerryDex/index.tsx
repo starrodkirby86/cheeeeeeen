@@ -1,13 +1,22 @@
-import React, { FC, Suspense, useState } from "react";
+import React, { FC, Suspense, useState, useEffect } from "react";
 import { Grid, Box, Image, Text } from "grommet";
 import BerrySidebarItems from "./BerrySidebarItems";
-import { fetchBerryList } from "./fetchBerryData";
+import { Berry, fetchBerry, fetchBerryList } from "./fetchBerryData";
 import dabOnTheHaters from "../../dabbing.jpg";
 
 const initialResource = fetchBerryList();
 
 const BerryDex: FC = () => {
   const [resource, setResource] = useState(initialResource);
+  const [berryId, setBerryId] = useState("");
+  const [berry, setBerry] = useState({} as Berry);
+
+  useEffect(() => {
+    if (berryId) {
+      fetchBerry(berryId).then((b: Berry) => setBerry(b));
+    }
+  }, [berryId]);
+
   return (
     <Grid
       fill
@@ -32,7 +41,10 @@ const BerryDex: FC = () => {
         ]}
       >
         <Suspense fallback={<Text>Loading...</Text>}>
-          <BerrySidebarItems resource={resource} />
+          <BerrySidebarItems
+            resource={resource}
+            berryHandler={id => setBerryId(id)}
+          />
         </Suspense>
       </Box>
       <Box
@@ -45,7 +57,11 @@ const BerryDex: FC = () => {
         }}
       >
         <Box height="medium" width="medium">
-          <Image fit="cover" alt="Dab!" src={dabOnTheHaters} />
+          {berry ? (
+            <div />
+          ) : (
+            <Image fit="cover" alt="Dab!" src={dabOnTheHaters} />
+          )}
         </Box>
       </Box>
     </Grid>
